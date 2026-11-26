@@ -4,7 +4,10 @@ No hardcoded teams, stats or fixtures. All data is dynamically fetched and
 computed in real time from live football APIs.
 """
 from typing import Dict, List, Any
-from backend.data.api_service import api_service
+try:
+    from backend.data.api_service import api_service
+except ImportError:
+    from data.api_service import api_service
 
 def get_live_leagues() -> Dict[str, Dict[str, Any]]:
     if not api_service.cached_leagues:

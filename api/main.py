@@ -8,11 +8,18 @@ from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel, Field
 from typing import List, Dict, Any, Optional
 
-from backend.data.football_data import LEAGUES_DATA, TEAMS_DATABASE, UPCOMING_FIXTURES
-from backend.data.api_service import api_service
-from backend.models.dixon_coles import DixonColesModel
-from backend.models.monte_carlo import MonteCarloSimulator
-from backend.models.value_finder import ValueBetFinder
+try:
+    from backend.data.football_data import LEAGUES_DATA, TEAMS_DATABASE, UPCOMING_FIXTURES
+    from backend.data.api_service import api_service
+    from backend.models.dixon_coles import DixonColesModel
+    from backend.models.monte_carlo import MonteCarloSimulator
+    from backend.models.value_finder import ValueBetFinder
+except ImportError:
+    from data.football_data import LEAGUES_DATA, TEAMS_DATABASE, UPCOMING_FIXTURES
+    from data.api_service import api_service
+    from models.dixon_coles import DixonColesModel
+    from models.monte_carlo import MonteCarloSimulator
+    from models.value_finder import ValueBetFinder
 
 app = FastAPI(
     title="Football Prediction & Analytics API",
