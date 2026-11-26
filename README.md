@@ -80,7 +80,7 @@ ou exécutez sous PowerShell :
 ```powershell
 python backend/run.py
 ```
-*Le serveur démarrera sur `http://127.0.0.1:8001`.*
+*Le serveur démarrera sur l'URL configurée dans `.env` (`BACKEND_URL`).*
 
 #### 2. Lancer le Frontend Angular :
 Dans un autre terminal :
@@ -88,4 +88,4 @@ Dans un autre terminal :
 cd frontend
 npm start
 ```
-*L'application s'ouvrira sur `http://localhost:4200`.*
+*L'application s'ouvrira sur l'adresse du serveur Angular configurée.*

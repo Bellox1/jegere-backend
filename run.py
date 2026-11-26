@@ -22,8 +22,20 @@ if os.path.exists(env_file):
 import uvicorn
 
 if __name__ == "__main__":
+    import urllib.parse
     from backend.api.main import app
-    port = int(os.environ.get("PORT", 8001))
-    backend_url = os.environ.get("BACKEND_URL", f"http://localhost:{port}")
-    print(f"Starting Football AI Prediction Engine on {backend_url}")
+    
+    backend_url = os.environ.get("BACKEND_URL", "")
+    port = None
+    if backend_url:
+        try:
+            parsed = urllib.parse.urlparse(backend_url)
+            if parsed.port:
+                port = parsed.port
+        except Exception:
+            pass
+    if port is None:
+        port = int(os.environ.get("PORT", 8001))
+        
+    print(f"Starting Football AI Prediction Engine on port {port} ({backend_url or '0.0.0.0:' + str(port)})")
     uvicorn.run(app, host="0.0.0.0", port=port, log_level="info")
